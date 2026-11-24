@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "animals",
+    "name": "Sneaky Animals",
+    "label": "Animals",
+    "first": 1,
+    "last": 999,
+    "missing": []
+  },
+  {
+    "slug": "people",
+    "name": "Sneaky People",
+    "label": "People",
+    "first": 1,
+    "last": 999,
+    "missing": []
+  },
+  {
+    "slug": "stuff",
+    "name": "Sneaky Stuff",
+    "label": "Stuff",
+    "first": 1,
+    "last": 420,
+    "missing": []
+  },
+  {
+    "slug": "transformation",
+    "name": "Sneaky Transformation",
+    "label": "Transformation",
+    "first": 1,
+    "last": 196,
+    "missing": []
+  }
+]

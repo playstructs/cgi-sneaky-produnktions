@@ -1,0 +1,40 @@
+{
+  "guild": {
+    "schema_version": 1,
+    "id": "0-18",
+    "name": "Sneaky Produnktions",
+    "description": "The Sneaky Produnktions Structs Guild",
+    "tag": "SNEAK",
+    "logo": "https://sneaky.structs.zone/sneaky/img/sneaky-produnktions-logo.jpg",
+    "webapp": "sneaky.structs.zone",
+    "website": "https://sneaky.structs.zone",
+    "recruiting": {
+      "status": "open"
+    },
+    "socials": {
+      "bluesky": "",
+      "facebook": "",
+      "farcaster": "",
+      "instagram": "",
+      "twitch": "",
+      "x": "https://x.com/SneakyProds",
+      "youtube": "",
+      "discord_contact": "",
+      "discord_server": "https://discord.com/invite/PF52wHyDe4",
+      "telegram_contact": "",
+      "telegram_channel": ""
+    },
+    "denom": {
+      "6": "sneaks",
+      "0": "usneaks"
+    },
+    "services": {
+      "guild_api": "https://beta.playstructs.com/api/",
+      "reactor_api": "https://public.testnet.structs.network/",
+      "client_websocket": "wss://public.testnet.structs.network:26657/websocket",
+      "grass_nats_websocket": "wss://beta.playstructs.com:1443",
+      "matrix": "https://matrix.beta.playstructs.com",
+      "explorer": ""
+    }
+  }
+}
