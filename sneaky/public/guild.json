@@ -25,8 +25,8 @@
       "telegram_channel": ""
     },
     "denom": {
-      "6": "sneaks",
-      "0": "usneaks"
+      "6": "sly",
+      "0": "usly"
     },
     "services": {
       "guild_api": "https://beta.playstructs.com/api/",

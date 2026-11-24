@@ -163,7 +163,7 @@ a join minimum, or the chain can't be read (`sneaky/runtime/recovery.js`).
 | Joining | open: join minimum 0, invite bypass permissioned |
 | Endpoint | `https://sneaky.structs.zone/guild.json` |
 | Sign-up (TSA) | player `1-14714` (`structs1xnk7tves570k2u33kujute63xcdyk4c85c22rk`), the host's proxy-join signer: 512 (GuildMembership) on `0-18`, 1024 (SubstationConnection) on `4-29` |
-| Bank denom | `sneaks` / `usneaks` (in guild.json) |
+| Bank denom | `sly` / `usly` (in guild.json) |
 
 ## Building and serving
 
