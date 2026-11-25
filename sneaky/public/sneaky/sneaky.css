@@ -51,12 +51,17 @@ html img.pfp-viewer-layer.sneaky-pfp-url {
   position: absolute;
   inset: 0;
   z-index: 5;
+  background: var(--page-background);
+  container: sneaky-gallery / size;
+}
+
+.sneaky-gallery-layout {
   box-sizing: border-box;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   padding: var(--spacing-lg) var(--spacing-xl);
-  background: var(--page-background);
 }
 
 .sneaky-gallery-header {
@@ -182,6 +187,79 @@ button.sneaky-gallery-tile:focus-visible::after {
 
   .sneaky-gallery-tile.sneaky-mod-found::after {
     animation: none;
+  }
+}
+
+/*
+ * Little height, as on a phone held sideways: the pictures come first. The
+ * title goes, the number field's label is only read aloud, and the tabs
+ * (scrolled sideways if they don't fit), the field and the close link share one
+ * row, or two when it is narrow too.
+ */
+@container sneaky-gallery (max-height: 420px) {
+  .sneaky-gallery-layout {
+    display: grid;
+    grid-template: 'tabs find close' auto 'scroll scroll scroll' minmax(0, 1fr) / minmax(0, 1fr) 210px auto;
+    align-items: start;
+    gap: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  /* Centred on the field beside them. */
+  .sneaky-gallery-header,
+  .sneaky-gallery-tabs {
+    min-height: 40px;
+    align-items: center;
+  }
+
+  .sneaky-gallery-header {
+    grid-area: close;
+  }
+
+  .sneaky-gallery-header .sui-text-header {
+    display: none;
+  }
+
+  .sneaky-gallery-tabs {
+    grid-area: tabs;
+    min-width: 0;
+  }
+
+  .sneaky-gallery .common-inline-text-input-group-container {
+    grid-area: find;
+  }
+
+  .sneaky-gallery .common-inline-text-input-controls-container {
+    flex-wrap: nowrap;
+  }
+
+  .sneaky-gallery .sui-input-text {
+    min-width: 0;
+  }
+
+  .sneaky-gallery .sui-input-text span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .sneaky-gallery-scroll {
+    grid-area: scroll;
+    align-self: stretch;
+  }
+}
+
+@container sneaky-gallery (max-height: 420px) and (max-width: 500px) {
+  .sneaky-gallery-layout {
+    grid-template: 'tabs close' auto 'find find' auto 'scroll scroll' minmax(0, 1fr) / minmax(0, 1fr) auto;
+  }
+
+  .sneaky-gallery-header,
+  .sneaky-gallery-tabs {
+    min-height: 0;
   }
 }
 
