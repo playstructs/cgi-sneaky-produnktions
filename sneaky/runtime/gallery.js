@@ -151,6 +151,12 @@ function open(host, {viewport = null, current, say, choose}) {
   };
   scroller.addEventListener('scroll', fill, {passive: true});
 
+  /** Scrolls the gallery to a picture: scrollIntoView would scroll the page under it as well. */
+  const center = (target, behavior) => {
+    const top = target.offsetTop - scroller.offsetTop - (scroller.clientHeight - target.offsetHeight) / 2;
+    scroller.scrollTo({top, behavior});
+  };
+
   /** Brings a picture into view, outlined. */
   const reveal = (id, {mark = true, smooth = true} = {}) => {
     const near = include(id);
@@ -165,7 +171,15 @@ function open(host, {viewport = null, current, say, choose}) {
       void target.offsetWidth;
       target.classList.add('sneaky-mod-found');
     }
-    target.scrollIntoView({block: 'center', behavior: smooth ? 'smooth' : 'auto'});
+    center(target, smooth ? 'smooth' : 'auto');
+  };
+
+  /** Scrolls the tabs, and nothing around them, to show one whole. */
+  const showTab = tab => {
+    const tabs = tab.parentElement;
+    const left = tab.offsetLeft - (tab.offsetParent === tabs ? 0 : tabs.offsetLeft);
+    const right = left + tab.offsetWidth - tabs.clientWidth;
+    tabs.scrollLeft = Math.min(left, Math.max(right, tabs.scrollLeft));
   };
 
   /** Shows one collection's pictures. */
@@ -178,7 +192,7 @@ function open(host, {viewport = null, current, say, choose}) {
       const active = tab.dataset.collection === c.slug;
       tab.classList.toggle('sui-mod-active', active);
       tab.setAttribute('aria-selected', String(active));
-      if (active) tab.scrollIntoView({block: 'nearest', inline: 'nearest'});
+      if (active) showTab(tab);
     });
     idInput.value = '';
     idInput.placeholder = `${c.first} to ${c.last}`;
@@ -210,8 +224,12 @@ function open(host, {viewport = null, current, say, choose}) {
     viewport.scrollTop = 0;
     const fit = () => {
       if (!panel.isConnected) return observer?.disconnect();
+      // Webapp may draw the page scaled: the height is in its own pixels.
+      const view = viewport.getBoundingClientRect();
+      const scale = view.height / viewport.offsetHeight || 1;
+      const above = (host.getBoundingClientRect().top - view.top) / scale - viewport.clientTop;
       panel.style.bottom = 'auto';
-      panel.style.height = `${Math.max(0, viewport.getBoundingClientRect().bottom - host.getBoundingClientRect().top)}px`;
+      panel.style.height = `${Math.max(0, viewport.clientHeight - above)}px`;
     };
     observer = new ResizeObserver(fit);
     observer.observe(viewport);

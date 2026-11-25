@@ -100,6 +100,11 @@ html img.pfp-viewer-layer.sneaky-pfp-url {
   container: sneaky-gallery / size;
 }
 
+/* The page under an open gallery stays put: scrolled, it would carry the gallery off. */
+#menu-page-screen-body:has(.sneaky-gallery) {
+  overflow: hidden;
+}
+
 .sneaky-gallery-layout {
   box-sizing: border-box;
   height: 100%;
@@ -149,6 +154,7 @@ html img.pfp-viewer-layer.sneaky-pfp-url {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   /* gallery.js keeps the view in place as rows are added above it. */
   overflow-anchor: none;
 }
